@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://swiatnews.pl/sitemap.xml
