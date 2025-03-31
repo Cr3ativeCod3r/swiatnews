@@ -21,28 +21,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_DOMAIN || ''),
+  icons: {
+    icon: "/webico.ico",
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_DOMAIN_CLEAR || ''),
   title: {
-    default: "World News - Najświeższe wiadomości ze świata",
-    template: "%s | World News"
+    default: "Swiat News - Najświeższe wiadomości ze świata",
+    template: "%s | Swiat News"
   },
   description: "Aktualne wiadomości ze świata, polityka, nauka, technologia, sport i kultura. Bądź na bieżąco z najważniejszymi wydarzeniami globalnymi.",
   keywords: ["wiadomości ze świata", "aktualności", "polityka", "nauka", "wydarzenia globalne", "news", "biznes", "sport"],
-  authors: [{ name: "World News Team" }],
+  authors: [{ name: "Swiat News Team" }],
   category: "news",
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    url: process.env.NEXT_PUBLIC_DOMAIN,
-    siteName: "World News",
-    title: "World News - Najświeższe wiadomości ze świata",
+    url: process.env.NEXT_PUBLIC_DOMAIN_CLEAR,
+    siteName: "Swiat News",
+    title: "Swiat News - Najświeższe wiadomości ze świata",
     description: "Aktualne wiadomości ze świata, polityka, nauka, biznes, technologia, sport i kultura. Bądź na bieżąco z najważniejszymi wydarzeniami globalnymi.",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_DOMAIN}/seo.png`,
+        url: `${process.env.NEXT_PUBLIC_DOMAIN_CLEAR}/seo.png`,
         width: 1200,
         height: 630,
-        alt: "World News - Wiadomości ze świata"
+        alt: "Swat News - Wiadomości ze świata"
       }
     ]
   },
@@ -58,16 +61,11 @@ export const metadata: Metadata = {
     }
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_DOMAIN,
+    canonical: process.env.NEXT_PUBLIC_DOMAIN_CLEAR,
     languages: {
-      'pl': process.env.NEXT_PUBLIC_DOMAIN
+      'pl': process.env.NEXT_PUBLIC_DOMAIN_CLEAR
     }
   },
-  // verification: {
-  //   google: "twój-kod-weryfikacyjny-google",
-  //   yandex: "twój-kod-weryfikacyjny-yandex",
-  //   yahoo: "twój-kod-weryfikacyjny-yahoo"
-  // }
 };
 
 export default function RootLayout({
@@ -78,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
         <ThemeProvider attribute="class">
           <Header />
           {children}

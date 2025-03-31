@@ -1,12 +1,6 @@
 import React from 'react';
 import { Briefcase, Target, BookOpen, Network } from 'lucide-react';
 import Link from 'next/link';
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'kariera w swiatnews',
-  description: 'Dołącz do nas już dziś'
-}
 
 const Career: React.FC = () => {
   const careerOpportunities = [
@@ -36,7 +30,7 @@ const Career: React.FC = () => {
     <div className=" mx-auto  sm: px-0  w-full h-full ">
       <div className="bg-gray-50 dark:bg-slate-800 lg:rounded-xl sm:rounded-none shadow-lg lg:px-36 lg:py-24 sm: py-12 space-y-8">
         <h1 className="text-4xl font-bold text-slate-900 dark:text-white text-center mb-6">
-          Dołącz do NewsWorld
+          Dołącz do SwiatNews
         </h1>
         
         <div className="grid md:grid-cols-2 gap-6">

@@ -1,5 +1,5 @@
 export default function sitemap() {
-    const domena = process.env.NEXT_PUBLIC_DOMAIN;
+    const domena = process.env.NEXT_PUBLIC_DOMAIN_CLEAR;
   
     const staticPages = [
       { url: `${domena}`, priority: 1 },

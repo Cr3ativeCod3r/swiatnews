@@ -4,14 +4,6 @@ import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { Send, CheckCircle } from 'lucide-react';
 
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Kontakt w swiatnews',
-  description: 'Skontaktuj się z nami'
-}
-
-
 export default function ContactForm() {
   const [state, handleSubmit] = useForm("xrbpaevj");
 

@@ -38,7 +38,8 @@ const NewsCard: React.FC<{ news: News }> = ({ news }) => {
                     alt={coverImage?.alternativeText || title}
                     width={640}
                     height={360}
-                    className='flex'
+                    className="w-full h-[220px] object-cover"
+                    priority
                 />
             )}
             <div className="p-5 flex flex-col h-auto">

@@ -94,7 +94,7 @@ export async function getPost(slug: string) {
 export async function getLatestNews(limit: number = 5) {
   try {
     const response = await axios.get(
-      `${API_URL}?sort[0]=createdAt:desc&pagination[limit]=${limit}&populate=*`
+      `${API_URL}?sort[0]=publication_date:desc&pagination[limit]=${limit}&populate=*`
     );
     return response.data;
   } catch (error) {

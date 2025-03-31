@@ -15,6 +15,7 @@ const PostHeader = ({ title, coverImage, imageAuthor }: PostHeaderProps) => (
                     src={`${process.env.NEXT_PUBLIC_API_IMAGE}${coverImage[0].url}`}
                     alt={title}
                     fill
+                    priority
                     className="object-cover w-full h-full"
                 />
                 {imageAuthor && (

@@ -13,7 +13,7 @@ const AboutUs: React.FC = () => {
     <div className=" mx-auto w-full h-full">
       <div className="bg-gray-50 dark:bg-slate-800 rounded-xl shadow-lg lg:py-24 lg:px-36 sm: py-12 space-y-8">
         <h1 className="text-4xl font-bold text-slate-900 dark:text-white text-center mb-6">
-          O NewsWorld
+          O SwiatNews
         </h1>
       <div className="flex items-center justify-center p-4 bg-blue-100 dark:bg-blue-900 rounded-2xl mx-auto lg:w-[50vw] sm: w-[98vw]">
         <CiCircleInfo className="text-blue-600 dark:text-blue-300 mr-2 w-24" size={24} />

@@ -13,7 +13,7 @@ const Advertisement: React.FC = () => {
     <div className=" mx-auto w-full h-full">
       <div className="bg-gray-50 dark:bg-slate-800 rounded-xl shadow-lg lg:p-36 sm: py-12 space-y-8">
         <h1 className="text-4xl font-bold text-slate-900 dark:text-white text-center mb-6">
-          Reklama w NewsWorld
+          Reklama w SwiatNews
         </h1>
         
         <div className="grid md:grid-cols-3 gap-6">
