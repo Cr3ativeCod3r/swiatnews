@@ -7,8 +7,21 @@ import ContentRenderer from '@/components/PostPage/ContentRenderer';
 import TagList from '@/components/PostPage/TagList';
 import { Post } from '@/types/post';
 import { useEffect } from 'react';
+import RelatedPostsClient from '@/components/SeeAlso/RelatedPostsClient';
 
-export default function PostPageClient({ post, category }: { post: Post, category: { name: string } }) {
+export default function PostPageClient(
+    { post, 
+      category,
+      relatedPosts
+    }: 
+    { 
+      post: Post, 
+      category: { name: string },
+      relatedPosts?: Post[]
+    }
+    )
+
+    {
     useEffect(() => {
         if (post) {
             document.title = post.title;
@@ -42,6 +55,9 @@ export default function PostPageClient({ post, category }: { post: Post, categor
                         <ContentRenderer content={post.content} />
                         <TagList tags={post.tags.map(tag => ({ ...tag, id: tag.id.toString() }))} />
                     </article>
+                    {relatedPosts && relatedPosts.length > 0 && (
+                          <RelatedPostsClient posts={relatedPosts} />
+                        )}
                 </main>
             </div>
         </>

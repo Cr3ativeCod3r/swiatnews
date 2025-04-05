@@ -1,21 +1,25 @@
 import { notFound } from 'next/navigation';
 import { categoriesList } from '@/data/categories';
 import { getPost } from '@/lib/api';
+import { seeAlso } from '@/lib/api';
 import PostPageClient from '../PostPageClient';
 import { Metadata } from 'next';
+
 
 interface PostPageParams {
   slug: string;
   kategoria: string;
 }
 
-export async function generateMetadata({ params }: { params: PostPageParams }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<PostPageParams> }): Promise<Metadata> {
+  const { slug, kategoria } = await params;  
+  
+  const post = await getPost(slug);
   if (!post) return { title: 'Nie znaleziono posta' };
   
-  const category = categoriesList.find(cat => cat.slug === params.kategoria);
+  const category = categoriesList.find(cat => cat.slug === kategoria);
   const baseUrl = process.env.NEXT_PUBLIC_DOMAIN_CLEAR || 'https://swiatnews.pl';
-  const postUrl = `${baseUrl}/${params.kategoria}/${params.slug}`;
+  const postUrl = `${baseUrl}/${kategoria}/${slug}`;
   
   return {
     title: post.title,
@@ -69,17 +73,18 @@ export async function generateMetadata({ params }: { params: PostPageParams }): 
         'max-snippet': -1,
       },
     },
-    
   };
 }
 
-export async function generateJsonLd({ params }: { params: PostPageParams }) {
-  const post = await getPost(params.slug);
+export async function generateJsonLd({ params }: { params: Promise<PostPageParams> }) {
+  const { slug, kategoria } = await params;
+  
+  const post = await getPost(slug);
   if (!post) return null;
   
-  const category = categoriesList.find(cat => cat.slug === params.kategoria);
+  const category = categoriesList.find(cat => cat.slug === kategoria);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://yoursite.com';
-  const postUrl = `${baseUrl}/${params.kategoria}/${params.slug}`;
+  const postUrl = `${baseUrl}/${kategoria}/${slug}`;
   
   return {
     '@context': 'https://schema.org',
@@ -111,8 +116,8 @@ export async function generateJsonLd({ params }: { params: PostPageParams }) {
   };
 }
 
-async function PostPageContent({ params }: { params: PostPageParams }) {
-  const { slug, kategoria } = params;
+async function PostPageContent({ params }: { params: Promise<PostPageParams> }) {
+  const { slug, kategoria } = await params;
 
   const category = categoriesList.find(cat => cat.slug === kategoria);
   if (!category) notFound();
@@ -120,6 +125,7 @@ async function PostPageContent({ params }: { params: PostPageParams }) {
   const post = await getPost(slug);
   if (!post) notFound();
   
+  const relatedPostsData = await seeAlso(slug);
   const jsonLd = await generateJsonLd({ params });
 
   return (
@@ -132,11 +138,11 @@ async function PostPageContent({ params }: { params: PostPageParams }) {
           }}
         />
       )}
-      <PostPageClient post={post} category={category} />
+      <PostPageClient post={post} category={category} relatedPosts={relatedPostsData?.data || []}/>
     </>
   );
 }
 
-export default function PostPage(props: { params: PostPageParams }) {
+export default function PostPage(props: { params: Promise<PostPageParams> }) {
   return <PostPageContent {...props} />;
 }

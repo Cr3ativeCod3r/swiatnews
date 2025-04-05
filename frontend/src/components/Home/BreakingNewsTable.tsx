@@ -29,7 +29,7 @@ const BreakingNewsTable: React.FC<BreakingNewsDisplayProps> = ({ breakingNews })
         </Link>
         <p className="text-sm md:text-base mb-2 text-gray-200">{breakingNews.intro}</p>
         <div className="flex items-center text-sm">
-          <span>{breakingNews.timeAgo}</span>
+          {/* <span>{breakingNews.timeAgo}</span> */}
           <span className="mx-2">•</span>
           <Link href={`/${breakingNews.categorySlug}`} className="hover:text-blue-300 transition-colors">
             {breakingNews.category}
